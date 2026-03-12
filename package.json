@@ -2,25 +2,20 @@
   "name": "projeto_agro",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LuisHenriqueFurlan/Projeto_Agro.git"
+    "build": "tsc -p tsconfig.json",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/LuisHenriqueFurlan/Projeto_Agro/issues"
-  },
-  "homepage": "https://github.com/LuisHenriqueFurlan/Projeto_Agro#readme",
   "dependencies": {
-    "fastify": "^5.8.2",
-    "nodemon": "^3.1.14"
+    "fastify": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0",
+    "typescript": "^5.9.3"
   }
 }
