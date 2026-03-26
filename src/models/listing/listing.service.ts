@@ -42,26 +42,30 @@ export class ListingService {
       throw new ValidationError('Condição inválida')
     }
 
-    const list = await prisma.listing.create({
-      data: {
-        title: data.title,
-        category: data.category,
-        type: data.type,
-        price: data.price,
-        year: data.year,
-        brand: data.brand,
-        model: data.model,
-        hours: data.hours,
-        condition: data.condition,
-        description: data.description,
-        location: data.location,
-        state: data.state,
-        featured: data.featured,
-        views: data.views,
-      },
-    })
+    try {
+      const list = await prisma.listing.create({
+        data: {
+          title: data.title,
+          category: data.category,
+          type: data.type,
+          price: data.price,
+          year: data.year,
+          brand: data.brand,
+          model: data.model,
+          hours: data.hours,
+          condition: data.condition,
+          description: data.description,
+          location: data.location,
+          state: data.state,
+          featured: data.featured,
+          views: data.views,
+        },
+      })
 
-    return list
+      return list
+    } catch (err: any) {
+      throw new ValidationError('Erro ao criar a listagem', err)
+    }
   }
 
   async getListingByID(id: string) {
@@ -166,31 +170,35 @@ export class ListingService {
       throw new NotFoundError('Erro ao encontrar a listagem para atualizar')
     }
 
-    const list = await prisma.listing.update({
-      where: { id },
-      data: {
-        title: data.title,
-        category: data.category,
-        type: data.type,
-        price: data.price,
-        year: data.year,
-        brand: data.brand,
-        model: data.model,
-        hours: data.hours,
-        condition: data.condition,
-        description: data.description,
-        location: data.location,
-        state: data.state,
-        featured: data.featured,
-        views: data.views,
-      },
-    })
+    try {
+      const list = await prisma.listing.update({
+        where: { id },
+        data: {
+          title: data.title,
+          category: data.category,
+          type: data.type,
+          price: data.price,
+          year: data.year,
+          brand: data.brand,
+          model: data.model,
+          hours: data.hours,
+          condition: data.condition,
+          description: data.description,
+          location: data.location,
+          state: data.state,
+          featured: data.featured,
+          views: data.views,
+        },
+      })
 
-    if (!list) {
-      throw new ValidationError('Erro ao atualizar a listagem')
+      if (!list) {
+        throw new ValidationError('Erro ao atualizar a listagem')
+      }
+
+      return list
+    } catch (err: any) {
+      throw new ValidationError('Erro a atualizar a listagem', err)
     }
-
-    return list
   }
 
   async deleteListing(id: string) {

@@ -14,5 +14,5 @@ export const updateListingImagesSchema = z.object({
   position: z.number(),
 })
 
-export type CreateListingImages = z.infer<typeof createListingImagesSchema>
-export type UpdateListingImages = z.infer<typeof updateListingImagesSchema>
+export type CreateListingImagesInput = z.infer<typeof createListingImagesSchema>
+export type UpdateListingImagesInput = z.infer<typeof updateListingImagesSchema>
