@@ -3,7 +3,7 @@ import {
   MissingFieldError,
   NotFoundError,
   ValidationError,
-} from '../errors/errors'
+} from '../../errors/errors'
 import {
   userService,
   type CreateUserSchemaDTO,
