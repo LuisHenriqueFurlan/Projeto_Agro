@@ -1,5 +1,5 @@
-import { ValidationError } from '../errors/errors'
-import { prisma } from '../../prisma/prismaClient'
+import { ValidationError } from '../../errors/errors'
+import { prisma } from '../../../prisma/prismaClient'
 import bcrypt from 'bcrypt'
 
 const BCRYPT_ROUNDS = 10
@@ -15,8 +15,8 @@ export interface CreateUserSchemaDTO {
 }
 
 export interface UpdateUserSchemaDTO {
-  name: string
-  email: string
+  name?: string
+  email?: string
   password?: string
   cep?: string
   phone?: string
