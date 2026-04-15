@@ -37,6 +37,7 @@ model user {
   verified      Boolean  @db.Boolean 
   created_at    DateTime @db.Timestamptz() @default(now())
   listing       listing[]
+  featured_plans featured_plans[]
 }
 
 model listing {
@@ -60,6 +61,7 @@ model listing {
   created_at      DateTime      @db.Timestamptz() @default(now())
   updated_at      DateTime      @db.Timestamptz() @default(now())
   listing_images  listing_image[]
+  featured_plans  featured_plans[]
 }
 
 model listing_image {
@@ -68,4 +70,15 @@ model listing_image {
   listing         listing @relation(fields: [listing_id], references: [id], onDelete: Cascade)
   url             String  @db.Text
   position        Int     @db.SmallInt
+}
+
+model featured_plans {
+  id           String   @id @db.Uuid @default(dbgenerated("gen_random_uuid()"))
+  listing_id   String   @db.Uuid
+  listing      listing  @relation(fields: [listing_id], references: [id], onDelete: Cascade)
+  user_id      String   @db.Uuid
+  user         user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  starts_at    DateTime @db.Timestamptz()
+  ends_at      DateTime @db.Timestamptz()
+  paid_amount  Decimal  @db.Decimal(10, 2)
 }
